@@ -9,13 +9,13 @@ function(add_unit_test name)
     ${name}Test.cpp
     ${PROJECT_SOURCE_DIR}/src/${name}.cpp
   )
-  set_target_properties(${PROJECT_NAME}
+  set_target_properties(${name}Test
     PROPERTIES
     CXX_STANDARD 14
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
   )
-  target_compile_options(${PROJECT_NAME}
+  target_compile_options(${name}Test
     PRIVATE -Wall -Wextra -Wno-long-long -pedantic
   )
   target_include_directories(${name}Test
