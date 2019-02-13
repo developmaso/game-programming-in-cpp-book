@@ -24,3 +24,6 @@ target_include_directories(${PROJECT_NAME}
 enable_testing()
 add_subdirectory(src)
 add_subdirectory(test)
+
+include(cmake/internal_utils.cmake)
+clang_format(${PROJECT_NAME})
