@@ -11,14 +11,8 @@ function(add_unit_test name)
     ${name}Test.cpp
     ${PROJECT_SOURCE_DIR}/src/${name}.cpp
   )
-  set_target_properties(${TARGET_NAME}
-    PROPERTIES
-    CXX_STANDARD 14
-    CXX_STANDARD_REQUIRED YES
-    CXX_EXTENSIONS NO
-  )
   target_compile_options(${TARGET_NAME}
-    PRIVATE -Wall -Wextra -Wno-long-long -pedantic
+    PRIVATE -Werror -Wall -Wextra
   )
   target_include_directories(${TARGET_NAME}
     PRIVATE ${PROJECT_SOURCE_DIR}/src
@@ -33,13 +27,13 @@ function(add_unit_test name)
   clang_format(${TARGET_NAME})
 endfunction()
 
-set(TEST_SRCS
+set(SRCS
   ClassATest.cpp
   ClassBTest.cpp
 )
 
-foreach(loop_v IN LISTS TEST_SRCS)
+foreach(NAME IN LISTS SRCS)
   # "ClassATest.cpp" -> "ClassA"
-  string(REGEX REPLACE Test\.cpp  "" test_name ${loop_v})
+  string(REGEX REPLACE Test\.cpp  "" test_name ${NAME})
   add_unit_test(${test_name})
 endforeach()

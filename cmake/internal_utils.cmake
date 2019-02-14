@@ -7,17 +7,17 @@ Turn this off if the build time is too slow."
 find_program(CLANG_FORMAT clang-format)
 
 function(clang_format target)
-  set(CUSTOM_TARGET_NAME clang_format_${target})
+  set(TARGET_NAME clang_format_${target})
   if(CLANG_FORMAT)
-    get_target_property(srcs ${target} SOURCES)
+    get_target_property(SRCS ${target} SOURCES)
     add_custom_target(
-      ${CUSTOM_TARGET_NAME}
-      COMMAND ${CLANG_FORMAT} -i -style=file ${srcs}
+      ${TARGET_NAME}
+      COMMAND ${CLANG_FORMAT} -i -style=file ${SRCS}
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
     if(ENABLE_CLANG_FORMAT)
       message(STATUS "Enable ClangFormat for ${target}")
-      add_dependencies(${target} ${CUSTOM_TARGET_NAME})
+      add_dependencies(${target} ${TARGET_NAME})
     endif()
   endif()
 endfunction()
