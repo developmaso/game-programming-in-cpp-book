@@ -5,10 +5,10 @@ add_subdirectory(lib/googletest)
 include(GoogleTest)
 include(${PROJECT_SOURCE_DIR}/cmake/internal_utils.cmake)
 
-function(add_unit_test name)
-  set(TARGET_NAME ${name}Test)
+function(add_tests name)
+  set(TARGET_NAME ${name}_test)
   add_executable(${TARGET_NAME}
-    ${name}Test.cpp
+    ${TARGET_NAME}.cpp
     ${PROJECT_SOURCE_DIR}/src/${name}.cpp
   )
   target_compile_options(${TARGET_NAME}
@@ -28,12 +28,12 @@ function(add_unit_test name)
 endfunction()
 
 set(SRCS
-  ClassATest.cpp
-  ClassBTest.cpp
+  class_a_test.cpp
+  class_b_test.cpp
 )
 
 foreach(NAME IN LISTS SRCS)
-  # "ClassATest.cpp" -> "ClassA"
-  string(REGEX REPLACE Test\.cpp  "" test_name ${NAME})
-  add_unit_test(${test_name})
+  # "class_a_test.cpp" -> "class_a"
+  string(REGEX REPLACE _test\.cpp  "" test_name ${NAME})
+  add_tests(${test_name})
 endforeach()

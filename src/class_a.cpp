@@ -1,4 +1,4 @@
-#include "ClassA.h"
+#include "class_a.h"
 
 int ClassA::sumA1(int x, int y) { return x + y; }
 int ClassA::sumA2(int x, int y) { return x + y; }

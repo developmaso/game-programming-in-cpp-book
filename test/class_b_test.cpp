@@ -1,5 +1,5 @@
+#include "class_b.h"
 #include <gtest/gtest.h>
-#include "ClassB.h"
 
 TEST(sumB1, normal) {
   ClassB target = {};
