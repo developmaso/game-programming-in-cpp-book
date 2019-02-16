@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(cmake_googletest_sample CXX)
+project(game_programming_in_cpp_book_chapter01 CXX)
 set(PROJECT_VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -24,10 +24,20 @@ target_compile_options(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
   PRIVATE ${PROJECT_SOURCE_DIR}/src
 )
+target_include_directories(${PROJECT_NAME} SYSTEM
+  PRIVATE ${PROJECT_SOURCE_DIR}/external/SDL/include
+)
+target_link_directories(${PROJECT_NAME}
+  PRIVATE ${PROJECT_SOURCE_DIR}/external/SDL/lib/mac
+)
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+  SDL2-2.0.0
+)
 
 enable_testing()
 add_subdirectory(src)
-add_subdirectory(test)
+# add_subdirectory(test)
 
 include(cmake/internal_utils.cmake)
 clang_format(${PROJECT_NAME})

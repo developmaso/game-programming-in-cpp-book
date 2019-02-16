@@ -27,13 +27,13 @@ function(add_tests name)
   clang_format(${TARGET_NAME})
 endfunction()
 
+# Because add to format target, put also header files.
 set(SRCS
-  class_a_test.cpp
-  class_b_test.cpp
+  # class_a_test.cpp
 )
 
 foreach(NAME IN LISTS SRCS)
-  # "class_a_test.cpp" -> "class_a"
+  # "file_name_test.cpp" -> "file_name"
   string(REGEX REPLACE _test\.cpp  "" test_name ${NAME})
   add_tests(${test_name})
 endforeach()
