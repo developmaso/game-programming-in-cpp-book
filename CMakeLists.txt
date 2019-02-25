@@ -27,13 +27,15 @@ target_include_directories(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} SYSTEM
   PRIVATE ${PROJECT_SOURCE_DIR}/external/SDL/include
 )
-target_link_directories(${PROJECT_NAME}
-  PRIVATE ${PROJECT_SOURCE_DIR}/external/SDL/lib/mac
-)
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE
-  SDL2-2.0.0
-)
+if(APPLE)
+  # For macOS, iOS, watchOS, tvOS
+  target_link_directories(${PROJECT_NAME}
+    PRIVATE ${PROJECT_SOURCE_DIR}/external/SDL/lib/mac
+  )
+  target_link_libraries(${PROJECT_NAME}
+    PRIVATE SDL2-2.0.0
+  )
+endif()
 
 enable_testing()
 add_subdirectory(src)
