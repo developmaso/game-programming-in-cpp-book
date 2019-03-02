@@ -44,9 +44,11 @@ class Game {
 
   // Pong specific
   // Direction of paddle
-  int mPaddleDir;
+  int mPaddleDirL;
+  int mPaddleDirR;
   // Position of paddle
-  Vector2 mPaddlePos;
+  Vector2 mPaddlePosL;
+  Vector2 mPaddlePosR;
   // Position of ball
   Vector2 mBallPos;
   // Velocity of ball
